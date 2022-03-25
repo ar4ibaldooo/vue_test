@@ -49,7 +49,7 @@
             }
         },
         mounted() {
-            axios.get('http://dummy.restapiexample.com/api/v1/employees')
+            axios.get('/api/v1/employees')
                 .then(response => {
                     this.personals = response.data.data
                     this.loading = false
@@ -84,7 +84,7 @@
                 })
                 // If you throw an error, the method will terminate here unless you surround it wil try/catch
                 if (ok) {
-                    await axios.delete(`http://dummy.restapiexample.com/api/v1/delete/${id}`)
+                    await axios.delete(`/api/v1/delete/${id}`)
                     this.editable = false
                     alert('Запись успешно удалена')
                     location.reload();
@@ -94,7 +94,7 @@
                 }
             },
             openPersonalItem(id) {
-                axios.get(`http://dummy.restapiexample.com/api/v1/employee/${id}`)
+                axios.get(`/api/v1/employee/${id}`)
                     .then(response => {
                         this.personalItemEdit = response.data.data
                         this.loading = false
@@ -110,7 +110,7 @@
             editPersonal(personal) {
                 if (!this.add){
                     axios
-                        .put(`http://dummy.restapiexample.com/api/v1/update/${personal.id}`,
+                        .put(`/api/v1/update/${personal.id}`,
                             {value: personal})
                     this.editable = false
                     this.addtable = true
@@ -118,7 +118,7 @@
                     this.add = false
                 }
                 else {
-                    axios.post("https://dummy.restapiexample.com/api/v1/create", {value: personal})
+                    axios.post("/api/v1/create", {value: personal})
                         .then(response => {
                         })
                         .catch(e => {
@@ -126,6 +126,7 @@
                         })
                     this.add = false
                     console.log('add',personal)
+                    location.reload();
                 }
 
             },
